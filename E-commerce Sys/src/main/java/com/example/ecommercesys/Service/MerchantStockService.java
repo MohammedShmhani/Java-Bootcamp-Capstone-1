@@ -113,13 +113,14 @@ public class MerchantStockService {
                             // =============================================================
 //                                                  Third_End_Point
                             // =============================================================
-    public ArrayList<Product> getProductsBelowStockThreshold(int threshold) {
+    public ArrayList<Product> getProductsBelowStockThreshold(int threshold,String merchantId) {
         ArrayList<Product> lowStockProducts = new ArrayList<>();
 
         for (MerchantStock stock : stocks) {
             if (stock.getStock() < threshold) {
                 for (Product product : productService.getProducts()) {
-                    if (product.getId().equals(stock.getProductId()) && !lowStockProducts.contains(product)) {
+                    if (product.getId().equals(stock.getProductId()) && !lowStockProducts.contains(product)
+                        stock.getMerchantId().equals(merchantId)) {
                         lowStockProducts.add(product);
                     }
                 }
