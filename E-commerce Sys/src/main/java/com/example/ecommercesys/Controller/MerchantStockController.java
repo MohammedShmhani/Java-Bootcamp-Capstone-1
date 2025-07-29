@@ -108,8 +108,8 @@ public class MerchantStockController {
 //                                                  Third_End_Point
                           // =============================================================
     @GetMapping("/low-stock/{threshold}")
-    public ResponseEntity<?> getProductsBelowThreshold(@PathVariable int threshold) {
-        ArrayList<Product> products = merchantStockService.getProductsBelowStockThreshold(threshold);
+    public ResponseEntity<?> getProductsBelowThreshold(@PathVariable int threshold,@PathVariable String merchantId) {
+        ArrayList<Product> products = merchantStockService.getProductsBelowStockThreshold(threshold,merchantId);
 
         if (products.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
